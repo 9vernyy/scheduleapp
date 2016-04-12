@@ -1,9 +1,7 @@
 package com.alisher.schedule;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,9 +10,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OnDateSelectedListener, OnMonthChangedListener {
+    private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
+
+    MaterialCalendarView widget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +34,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        widget = (MaterialCalendarView) findViewById(R.id.calendarView);
+        widget.setOnDateChangedListener(this);
+        widget.setOnMonthChangedListener(this);
+        widget.addDecorator(new OneDayDecorator());
+        Calendar calendar = Calendar.getInstance();
+        widget.setSelectedDate(calendar.getTime());
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -97,5 +105,28 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onDateSelected(MaterialCalendarView widget, CalendarDay date, boolean selected) {
+        //int daysOfweek = date.getDay();
+        String weekDay;
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
+
+        weekDay = dayFormat.format(date.getCalendar().getTime());
+        Toast.makeText(this, "Current day: " + weekDay, Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("weekDay", weekDay);
+        startActivity(i);
+
+        // Get intent example
+//        Intent i = getIntent();
+//        String asd = i.getStringExtra("weekDay");
+    }
+
+    @Override
+    public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+        //noinspection ConstantConditions
+        getSupportActionBar().setTitle(FORMATTER.format(date.getDate()));
     }
 }
