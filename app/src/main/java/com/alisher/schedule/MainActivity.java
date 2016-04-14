@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
 
     MaterialCalendarView widget;
+    private SQLiteHandler sqLiteHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sqLiteHandler = new SQLiteHandler(getApplicationContext());
+
     }
 
     @Override
@@ -115,18 +122,58 @@ public class MainActivity extends AppCompatActivity
 
         weekDay = dayFormat.format(date.getCalendar().getTime());
         Toast.makeText(this, "Current day: " + weekDay, Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("weekDay", weekDay);
+        int dayId = 0;
+        switch (weekDay){
+            case "Monday":
+                dayId = 1;
+                break;
+            case "Tuesday":
+                dayId = 2;
+                break;
+            case "Wednesday":
+                dayId = 3;
+                break;
+            case "Thursday":
+                dayId = 4;
+                break;
+            case "Friday":
+                dayId = 5;
+                break;
+            case "Saturday":
+                dayId = 6;
+                break;
+            case "Sunday":
+                dayId = 7;
+                break;
+            default:
+                break;
+        }
+        HashMap<String, String> userDetails = sqLiteHandler.getUserDetails();
+        int id = Integer.parseInt(userDetails.get("id"));
+        Log.d("ID", id + ", " + dayId);
+        Subject subject = new Subject(id, dayId, "Mathematics", "10:00", "11:00", 105);
+        sqLiteHandler.addSchedule(subject);
+        Intent i = new Intent(this, SubjectActivity.class);
+        i.putExtra("userId", id);
+        i.putExtra("dayId", dayId);
         startActivity(i);
-
-        // Get intent example
-//        Intent i = getIntent();
-//        String asd = i.getStringExtra("weekDay");
+//        List<Subject> subjectsByDay = sqLiteHandler.getSubjectsByDay(id, dayId);
+//        Log.d("OBJECTS",subjectsByDay.get(0) + "");
+//        subjectsByDay.get(0).setNameSubject("Physic");
+//        sqLiteHandler.updateSubject(subjectsByDay.get(0));
+//        subjectsByDay = sqLiteHandler.getSubjectsByDay(id, dayId);
+//        Log.d("OBJECTS 2", subjectsByDay.get(0) + "");
+//        sqLiteHandler.deleteSubject(subjectsByDay.get(0));
+//        subjectsByDay = sqLiteHandler.getSubjectsByDay(id, dayId);
+//        Log.d("OBJECTS 3", subjectsByDay.get(0) + "");
     }
 
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
         //noinspection ConstantConditions
         getSupportActionBar().setTitle(FORMATTER.format(date.getDate()));
+    }
+
+    public void AddSubject() {
     }
 }

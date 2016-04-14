@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_delete_white_24dp.png",
+        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\src\\main\\res\\drawable\\ic_delete_white_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_full_material.xml",
         "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_ratingbar_full_material.xml"
     },
@@ -12,12 +16,16 @@
         "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
     {
+        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_light.xml",
+        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_dialog_material_background_light.xml"
+    },
+    {
         "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_light.xml",
-        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_dialog_material_background_light.xml"
+        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mdtp_done_background_color_dark.xml",
+        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.wdullaer\\materialdatetimepicker\\1.2.1\\res\\drawable\\mdtp_done_background_color_dark.xml"
     },
     {
         "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
@@ -32,12 +40,16 @@
         "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\drawable\\design_fab_background.xml"
     },
     {
-        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
-        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_textfield_search_material.xml"
+        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mdtp_done_background_color.xml",
+        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.wdullaer\\materialdatetimepicker\\1.2.1\\res\\drawable\\mdtp_done_background_color.xml"
     },
     {
         "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
         "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
         "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
@@ -96,6 +108,14 @@
         "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
     {
+        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_check_white_24dp.png",
+        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\src\\main\\res\\drawable\\ic_check_white_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mdtp_material_button_selected.xml",
+        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.wdullaer\\materialdatetimepicker\\1.2.1\\res\\drawable\\mdtp_material_button_selected.xml"
+    },
+    {
         "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
         "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_cab_background_top_material.xml"
     },
@@ -106,5 +126,9 @@
     {
         "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
         "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mdtp_material_button_background.xml",
+        "source": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.wdullaer\\materialdatetimepicker\\1.2.1\\res\\drawable\\mdtp_material_button_background.xml"
     }
 ]
