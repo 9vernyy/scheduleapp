@@ -24,6 +24,7 @@ import com.bignerdranch.android.multiselector.SwappingHolder;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -46,10 +47,23 @@ public class SubjectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject);
+
+        mAddReminderButton = (FloatingActionButton) findViewById(R.id.add_reminder);
+        mAddReminderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SubjectActivity.this, SubjectAddActivity.class);
+                i.putExtra("userId", userId);
+                i.putExtra("dayId", dayId);
+                startActivity(i);
+            }
+        });
+
         Intent i = getIntent();
         userId = i.getIntExtra("userId", 0);
         dayId = i.getIntExtra("dayId", 0);
-        getSupportActionBar().setTitle("Subject");
+        String date = i.getStringExtra("date");
+        getSupportActionBar().setTitle(date);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         db = new SQLiteHandler(getApplicationContext());
@@ -68,20 +82,19 @@ public class SubjectActivity extends AppCompatActivity {
         mAdapter = new SimpleAdapter();
         mAdapter.setItemCount(getDefaultItemCount());
         mList.setAdapter(mAdapter);
-
-//        mAddReminderButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Intent intent = new Intent(v.getContext(), SubjectAddActivity.class);
-////                startActivity(intent);
-//            }
-//        });
     }
 
     // Create context menu for long press actions
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.menu_add_subject, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return true;
     }
 
     // Multi select items in recycler view
@@ -161,9 +174,9 @@ public class SubjectActivity extends AppCompatActivity {
 
         // Create intent to edit the reminder
         // Put reminder id as extra
-//        Intent i = new Intent(this, ReminderEditActivity.class);
-//        i.putExtra(ReminderEditActivity.EXTRA_REMINDER_ID, mStringClickID);
-//        startActivityForResult(i, 1);
+        Intent i = new Intent(this, SubjectEditActivity.class);
+        i.putExtra("subjectId", mStringClickID);
+        startActivityForResult(i, 1);
     }
 
     @Override

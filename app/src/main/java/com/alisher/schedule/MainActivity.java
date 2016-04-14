@@ -150,22 +150,11 @@ public class MainActivity extends AppCompatActivity
         }
         HashMap<String, String> userDetails = sqLiteHandler.getUserDetails();
         int id = Integer.parseInt(userDetails.get("id"));
-        Log.d("ID", id + ", " + dayId);
-        Subject subject = new Subject(id, dayId, "Mathematics", "10:00", "11:00", 105);
-        sqLiteHandler.addSchedule(subject);
         Intent i = new Intent(this, SubjectActivity.class);
         i.putExtra("userId", id);
         i.putExtra("dayId", dayId);
+        i.putExtra("date", FORMATTER.format(date.getDate()));
         startActivity(i);
-//        List<Subject> subjectsByDay = sqLiteHandler.getSubjectsByDay(id, dayId);
-//        Log.d("OBJECTS",subjectsByDay.get(0) + "");
-//        subjectsByDay.get(0).setNameSubject("Physic");
-//        sqLiteHandler.updateSubject(subjectsByDay.get(0));
-//        subjectsByDay = sqLiteHandler.getSubjectsByDay(id, dayId);
-//        Log.d("OBJECTS 2", subjectsByDay.get(0) + "");
-//        sqLiteHandler.deleteSubject(subjectsByDay.get(0));
-//        subjectsByDay = sqLiteHandler.getSubjectsByDay(id, dayId);
-//        Log.d("OBJECTS 3", subjectsByDay.get(0) + "");
     }
 
     @Override
@@ -174,6 +163,4 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle(FORMATTER.format(date.getDate()));
     }
 
-    public void AddSubject() {
-    }
 }

@@ -34,6 +34,14 @@ public class Subject {
     public Subject() {
     }
 
+    public Subject(int id, String name, String startTime, String endTime, Integer cab) {
+        this.id = id;
+        this.nameSubject = name;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.cabinet = cab;
+    }
+
     public int getId() {
         return id;
     }

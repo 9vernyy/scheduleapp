@@ -179,8 +179,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public int updateSubject(Subject subject) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_USER_ID, subject.getUserId());
-        values.put(KEY_DAY_WEEK_ID, subject.getDayWeekId());
+//        values.put(KEY_USER_ID, subject.getUserId());
+//        values.put(KEY_DAY_WEEK_ID, subject.getDayWeekId());
         values.put(KEY_NAME_SUBJECT, subject.getNameSubject());
         values.put(KEY_START_TIME, subject.getStartTime());
         values.put(KEY_END_TIME, subject.getEndTime());
