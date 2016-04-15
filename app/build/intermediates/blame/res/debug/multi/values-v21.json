@@ -1641,9 +1641,30 @@
                     "startLine": 219,
                     "startColumn": 4,
                     "startOffset": 16353,
-                    "endLine": 225,
+                    "endLine": 232,
                     "endColumn": 12,
-                    "endOffset": 16701
+                    "endOffset": 16985
+                },
+                "from": {
+                    "file": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\src\\main\\res\\values-v21\\styles.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 320,
+                        "endLine": 22,
+                        "endColumn": 12,
+                        "endOffset": 952
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 233,
+                    "startColumn": 4,
+                    "startOffset": 16990,
+                    "endLine": 239,
+                    "endColumn": 12,
+                    "endOffset": 17338
                 },
                 "from": {
                     "file": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-v21\\values-v21.xml",
@@ -1659,12 +1680,12 @@
             },
             {
                 "to": {
-                    "startLine": 226,
+                    "startLine": 240,
                     "startColumn": 4,
-                    "startOffset": 16706,
-                    "endLine": 232,
+                    "startOffset": 17343,
+                    "endLine": 246,
                     "endColumn": 12,
-                    "endOffset": 17066
+                    "endOffset": 17703
                 },
                 "from": {
                     "file": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-v21\\values-v21.xml",
@@ -1680,12 +1701,12 @@
             },
             {
                 "to": {
-                    "startLine": 233,
+                    "startLine": 247,
                     "startColumn": 4,
-                    "startOffset": 17071,
-                    "endLine": 242,
+                    "startOffset": 17708,
+                    "endLine": 256,
                     "endColumn": 12,
-                    "endOffset": 17746
+                    "endOffset": 18383
                 },
                 "from": {
                     "file": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-v21\\values-v21.xml",
@@ -1701,11 +1722,11 @@
             },
             {
                 "to": {
-                    "startLine": 243,
+                    "startLine": 257,
                     "startColumn": 4,
-                    "startOffset": 17751,
+                    "startOffset": 18388,
                     "endColumn": 56,
-                    "endOffset": 17803
+                    "endOffset": 18440
                 },
                 "from": {
                     "file": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-v21\\values-v21.xml",
@@ -1720,11 +1741,11 @@
             },
             {
                 "to": {
-                    "startLine": 244,
+                    "startLine": 258,
                     "startColumn": 4,
-                    "startOffset": 17808,
+                    "startOffset": 18445,
                     "endColumn": 57,
-                    "endOffset": 17861
+                    "endOffset": 18498
                 },
                 "from": {
                     "file": "C:\\Users\\Adilet\\Desktop\\scheduleapp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\values-v21\\values-v21.xml",

@@ -110,22 +110,20 @@ public class SubjectActivity extends AppCompatActivity {
         public boolean onActionItemClicked(android.support.v7.view.ActionMode actionMode, MenuItem menuItem) {
             switch (menuItem.getItemId()) {
 
-                // On clicking discard reminders
+                // On clicking discard subject
                 case R.id.discard_reminder:
                     // Close the context menu
                     actionMode.finish();
 
-                    // Get the reminder id associated with the recycler view item
-                    Log.d("IDMAP", IDmap.size()+"");
+                    // Get the subject id associated with the recycler view item
                     for (int i = IDmap.size(); i >= 0; i--) {
                         if (mMultiSelector.isSelected(i, 0)) {
                             int id = IDmap.get(i);
-                            // Get reminder from reminder database using id
+                            // Get subject from subject database using id
                             Subject temp = db.getSubjectById(id);
-                            Log.d("TEMP", temp.toString());
-                            // Delete reminder
+                            // Delete subject
                             db.deleteSubject(temp);
-                            // Remove reminder from recycler view
+                            // Remove subject from recycler view
                             mAdapter.removeItemSelected(i);
                         }
                     }
@@ -133,16 +131,16 @@ public class SubjectActivity extends AppCompatActivity {
                     // Clear selected items in recycler view
                     mMultiSelector.clearSelections();
                     // Recreate the recycler items
-                    // This is done to remap the item and reminder ids
+                    // This is done to remap the item and subject ids
                     mAdapter.onDeleteItem(getDefaultItemCount());
 
                     // Display toast to confirm delete
                     Toast.makeText(getApplicationContext(),
-                            "Deleted",
+                            "Удалено",
                             Toast.LENGTH_SHORT).show();
 
-                    // To check is there are saved reminders
-                    // If there are no reminders display a message asking the user to create reminders
+                    // To check is there are saved subjects
+                    // If there are no subjects display a message asking the user to create subjects
                     List<Subject> mTest = db.getSubjectsByDay(userId, dayId);
 
                     if (mTest.isEmpty()) {
@@ -153,7 +151,7 @@ public class SubjectActivity extends AppCompatActivity {
 
                     return true;
 
-                // On clicking save reminders
+                // On clicking save subjects
                 case R.id.save_reminder:
                     // Close the context menu
                     actionMode.finish();
@@ -168,12 +166,12 @@ public class SubjectActivity extends AppCompatActivity {
         }
     };
 
-    // On clicking a reminder item
+    // On clicking a subject item
     private void selectReminder(int mClickID) {
         String mStringClickID = Integer.toString(mClickID);
 
-        // Create intent to edit the reminder
-        // Put reminder id as extra
+        // Create intent to edit the subject
+        // Put subject id as extra
         Intent i = new Intent(this, SubjectEditActivity.class);
         i.putExtra("subjectId", mStringClickID);
         startActivityForResult(i, 1);
@@ -185,13 +183,13 @@ public class SubjectActivity extends AppCompatActivity {
     }
 
     // Recreate recycler view
-    // This is done so that newly created reminders are displayed
+    // This is done so that newly created subjects are displayed
     @Override
     public void onResume() {
         super.onResume();
 
-        // To check is there are saved reminders
-        // If there are no reminders display a message asking the user to create reminders
+        // To check is there are saved subjects
+        // If there are no subjects display a message asking the user to create subjects
         List<Subject> mTest = db.getSubjectsByDay(userId, dayId);
 
         if (mTest.isEmpty()) {
@@ -297,7 +295,7 @@ public class SubjectActivity extends AppCompatActivity {
                 mThumbnailImage = (ImageView) itemView.findViewById(R.id.thumbnail_image);
             }
 
-            // On clicking a reminder item
+            // On clicking a subject item
             @Override
             public void onClick(View v) {
                 if (!mMultiSelector.tapSelection(this)) {
@@ -320,7 +318,7 @@ public class SubjectActivity extends AppCompatActivity {
                 return true;
             }
 
-            // Set reminder title view
+            // Set subject title view
             public void setSubjectName(String title) {
                 mTitleText.setText(title);
             }
@@ -340,7 +338,7 @@ public class SubjectActivity extends AppCompatActivity {
         public List<SubjectItem> generateData(int count) {
             ArrayList<SimpleAdapter.SubjectItem> items = new ArrayList<>();
 
-            // Get all reminders from the database
+            // Get all subject from the database
             List<Subject> reminders = db.getSubjectsByDay(userId, dayId);
 
             // Initialize lists
@@ -351,7 +349,7 @@ public class SubjectActivity extends AppCompatActivity {
             List<Integer> IDList = new ArrayList<>();
             List<DateTimeSorter> DateTimeSortList = new ArrayList<>();
 
-            // Add details of all reminders in their respective lists
+            // Add details of all subjects in their respective lists
             for (Subject r : reminders) {
                 Titles.add(r.getNameSubject());
                 StartTIme.add(r.getStartTime());

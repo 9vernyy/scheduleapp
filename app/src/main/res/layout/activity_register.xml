@@ -1,97 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/colorPrimary"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="10dp" >
+    android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
-        <EditText
-            android:id="@+id/reg_fName"
-            android:layout_width="fill_parent"
+        <ImageView android:src="@drawable/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_marginBottom="1dp"
+            android:layout_gravity="center_horizontal" />
+
+        <!-- Name Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="#FFF"
-            android:hint="name"
-            android:inputType="text"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="#000"
-            android:textColorHint="#c9c8c8" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/reg_lName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Имя" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/reg_lName"
-            android:layout_width="fill_parent"
+        <!--  Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="#FFF"
-            android:hint="Last name"
-            android:inputType="text"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="#000"
-            android:textColorHint="#c9c8c8" />
-        <EditText
-            android:id="@+id/reg_email"
-            android:layout_width="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/reg_fName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Фамилия" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="#FFF"
-            android:hint="example@gmail.com"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="#000"
-            android:textColorHint="#c9c8c8" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/reg_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/reg_login"
-            android:layout_width="fill_parent"
+        <!-- Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="#FFF"
-            android:hint="login"
-            android:inputType="text"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="#000"
-            android:textColorHint="#c9c8c8" />
-        <EditText
-            android:id="@+id/reg_password"
-            android:layout_width="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/reg_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Логин"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="#FFF"
-            android:hint="password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="#000"
-            android:textColorHint="#c9c8c8" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/reg_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Пароль"/>
+        </android.support.design.widget.TextInputLayout>
 
-
-
-        <!-- Login Button -->
-
-        <Button
+        <!-- Signup Button -->
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnRegister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="#ed0e0e"
-            android:text="Sign Up"
-            android:textColor="#000" />
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:text="Регистрация"/>
 
-        <!-- Link to Login Screen -->
+        <Button
+            android:id="@+id/btnSignUpReg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="Уже зарегистровались! Войдите."
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

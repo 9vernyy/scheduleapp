@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,7 +8,7 @@
         android:layout_below="@+id/toolbar"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:id="@+id/add_reminder_layout_top"
-        android:background="@color/colorPrimary"
+        android:background="@color/primary"
         android:orientation="vertical"
         android:layout_height="148dp">
 
@@ -24,7 +21,7 @@
             android:lines="4"
             android:minLines="4"
             android:gravity="top|left"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:scrollHorizontally="false"
             android:textColorHint="@color/primary_text_disabled_material_dark"
             android:inputType="textCapWords|textMultiLine"
@@ -47,7 +44,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_marginTop="8dp"
-                android:text="Description"
+                android:text="Описание предмета"
                 android:id="@+id/details"
                 android:textSize="15dp"
                 android:gravity="center_vertical"
@@ -70,7 +67,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="32dp"
-                    android:src="@android:drawable/star_big_on"
+                    android:src="@drawable/time"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
@@ -86,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:textSize="15dp"
                         android:layout_height="wrap_content"
-                        android:text="Start time" />
+                        android:text="Начало" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -114,7 +111,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="32dp"
-                    android:src="@android:drawable/star_big_on"
+                    android:src="@drawable/time2"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
@@ -130,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:textSize="15dp"
                         android:layout_height="wrap_content"
-                        android:text="End time" />
+                        android:text="Конец" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -157,7 +154,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="32dp"
-                    android:src="@android:drawable/star_big_on"
+                    android:src="@drawable/cabinet"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
@@ -174,7 +171,7 @@
                         android:layout_width="wrap_content"
                         android:textSize="15dp"
                         android:layout_height="wrap_content"
-                        android:text="Cabinet" />
+                        android:text="Кабинет" />
 
                     <TextView
                         android:layout_width="wrap_content"

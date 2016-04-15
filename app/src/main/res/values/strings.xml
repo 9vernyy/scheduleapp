@@ -10,4 +10,9 @@
 
     <string name="action_discard_reminder">Discard Reminder</string>
     <string name="action_save_reminder">Save Reminder</string>
+    <string name="validation_name">Обязательное поле</string>
+    <string name="validation_valid_email">Пожалуйтса, введите корректный почтовый ящик</string>
+    <string name="validation_participants">Не менее 6 символов</string>
+    <string name="login_valid">Введите логин</string>
+    <string name="pass_valid">Введите пароль</string>
 </resources>

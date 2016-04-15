@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
+    android:background="#FFFFFF"
     tools:context=".SubjectActivity">
 
     <android.support.v7.widget.RecyclerView
@@ -37,7 +37,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
         android:clickable="true"
-        fab:fab_colorNormal="#2067d1"
-        fab:fab_colorPressed="#26d97d" />
+        fab:fab_colorNormal="#FF5252"
+        fab:fab_colorPressed="#CC1D1D" />
 
 </RelativeLayout>

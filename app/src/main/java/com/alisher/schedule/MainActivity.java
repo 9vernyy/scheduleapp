@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDateSelected(MaterialCalendarView widget, CalendarDay date, boolean selected) {
-        //int daysOfweek = date.getDay();
         String weekDay;
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
 

@@ -43,7 +43,7 @@ public class SubjectAddActivity extends AppCompatActivity {
         Intent i = getIntent();
         userId = i.getIntExtra("userId", 0);
         dayId = i.getIntExtra("dayId", 0);
-        getSupportActionBar().setTitle("Add Subject");
+        getSupportActionBar().setTitle("Добавить предмет");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -63,7 +63,7 @@ public class SubjectAddActivity extends AppCompatActivity {
 
             case R.id.save_reminder:
                 if (subjectName.getText().toString().length() == 0)
-                    subjectName.setError("Subject cannot be blank!");
+                    subjectName.setError("Название предмета не может быть пустым!");
 
                 else {
                     saveSubject();
@@ -71,7 +71,7 @@ public class SubjectAddActivity extends AppCompatActivity {
                 return true;
 
             case R.id.discard_reminder:
-                Toast.makeText(getApplicationContext(), "Discarded",
+                Toast.makeText(getApplicationContext(), "Отмена",
                         Toast.LENGTH_SHORT).show();
 
                 onBackPressed();
@@ -92,7 +92,7 @@ public class SubjectAddActivity extends AppCompatActivity {
 
 
         db.addSchedule(new Subject(userId, dayId, name, _startTime, _endTime, cab));
-        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
         onBackPressed();
     }
 
@@ -106,6 +106,7 @@ public class SubjectAddActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         TimePickerDialog tpd = TimePickerDialog.newInstance(new StartTimeListener(), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);
         tpd.setThemeDark(false);
+        tpd.setAccentColor(getResources().getColor(R.color.primary));
         tpd.show(getFragmentManager(), "TimePickerDialog");
     }
 
@@ -113,24 +114,25 @@ public class SubjectAddActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         TimePickerDialog tpd = TimePickerDialog.newInstance(new EndTimeListener(), calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);
         tpd.setThemeDark(false);
+        tpd.setAccentColor(getResources().getColor(R.color.primary));
         tpd.show(getFragmentManager(), "TimePickerDialog");
     }
 
     public void setCabinet(View view) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Enter cabinet");
+        alert.setTitle("Введите номер кабинета");
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         alert.setView(input);
 
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Ок", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         cabinet.setText(input.getText());
                     }
                 });
 
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -142,7 +144,7 @@ public class SubjectAddActivity extends AppCompatActivity {
 
     private class StartTimeListener implements TimePickerDialog.OnTimeSetListener {
         @Override
-        public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
+        public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
             mHour = hourOfDay;
             mMinute = minute;
             if (minute < 10) {
@@ -156,7 +158,7 @@ public class SubjectAddActivity extends AppCompatActivity {
 
     private class EndTimeListener implements TimePickerDialog.OnTimeSetListener {
         @Override
-        public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
+        public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
             mHour = hourOfDay;
             mMinute = minute;
             if (minute < 10) {

@@ -17,12 +17,18 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import eu.inmite.android.lib.validations.form.FormValidator;
+import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
+import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
+
 public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog pDialog;
     private Button btnSignIn;
     private Button btnSignUp;
+    @NotEmpty(messageId = R.string.login_valid)
     private EditText inputLogin;
+    @NotEmpty(messageId = R.string.pass_valid)
     private EditText inputPassword;
     private SessionManager session;
     private SQLiteHandler db;
@@ -60,18 +66,19 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
+                if(validate()) {
                 String login = inputLogin.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
-
-                // Check for empty data in the form
-                if (!login.isEmpty() && !password.isEmpty()) {
-                    // login user
-                    checkLogin(login, password);
-                } else {
-                    // Prompt user to enter credentials
-                    Toast.makeText(getApplicationContext(),
-                            "Одно из полей не заполнено!", Toast.LENGTH_LONG)
-                            .show();
+                    // Check for empty data in the form
+                    if (!login.isEmpty() && !password.isEmpty()) {
+                        // login user
+                        checkLogin(login, password);
+                    } else {
+                        // Prompt user to enter credentials
+                        Toast.makeText(getApplicationContext(),
+                                "Одно из полей не заполнено!", Toast.LENGTH_LONG)
+                                .show();
+                    }
                 }
             }
         });
@@ -87,7 +94,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
+    private boolean validate() {
+        final boolean isValid = FormValidator.validate(this, new SimpleErrorPopupCallback(this, true));
+        return isValid;
+    }
     /**
      * function to verify login details in mysql db
      */
@@ -96,24 +106,25 @@ public class LoginActivity extends AppCompatActivity {
         pDialog.setMessage("Вход в учетную запись ...");
         showDialog();
         HashMap<String, String> user = db.getUserDetails();
-        Log.d("LoginActivity", user.get("login"));
-        Log.d("LoginActivity", user.get("password"));
+
 
         try {
-            //HashMap<String, String> user = db.getUserDetails();
-            if (login.equals(user.get("login")) && password.equals(user.get("password"))) {
-                Toast.makeText(getApplicationContext(), "Успешно!", Toast.LENGTH_LONG).show();
-                ses.setLogin(true);
-                hideDialog();
-                Intent intent = new Intent(
-                        LoginActivity.this,
-                        MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(getApplicationContext(), "Неверный логин или пароль!", Toast.LENGTH_LONG).show();
-                hideDialog();
+            if(user !=null) {
+                if (login.equals(user.get("login")) && password.equals(user.get("password"))) {
+                    Toast.makeText(getApplicationContext(), "Успешно!", Toast.LENGTH_LONG).show();
+                    ses.setLogin(true);
+                    hideDialog();
+                    Intent intent = new Intent(
+                            LoginActivity.this,
+                            MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Неверный логин или пароль!", Toast.LENGTH_SHORT).show();
+                    hideDialog();
+                }
             }
+            else Toast.makeText(getApplicationContext(), "Такой пользователь не зарегистрирован!", Toast.LENGTH_SHORT).show();
         } catch (SQLiteException e) {
             e.printStackTrace();
         }

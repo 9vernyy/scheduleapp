@@ -4,24 +4,36 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import eu.inmite.android.lib.validations.form.FormValidator;
+import eu.inmite.android.lib.validations.form.annotations.MinLength;
+import eu.inmite.android.lib.validations.form.annotations.NotEmpty;
+import eu.inmite.android.lib.validations.form.annotations.RegExp;
+import eu.inmite.android.lib.validations.form.callback.SimpleErrorPopupCallback;
+
+import static eu.inmite.android.lib.validations.form.annotations.RegExp.EMAIL;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = RegisterActivity.class.getSimpleName();
     private Button btnRegister;
     private Button btnLinkToLogin;
+    @NotEmpty(messageId = R.string.validation_name)
     private EditText inputFirstName;
+    @NotEmpty(messageId = R.string.validation_name)
     private EditText inputSecondName;
+    @RegExp(value = EMAIL, messageId = R.string.validation_valid_email)
     private EditText inputEmail;
+    @NotEmpty(messageId = R.string.validation_name)
     private EditText inputLogin;
+    @MinLength(value = 1, messageId = R.string.validation_participants, order = 2)
     private EditText inputPassword;
     private SessionManager session;
     private SQLiteHandler db;
@@ -38,6 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
         inputLogin = (EditText) findViewById(R.id.reg_login);
         inputPassword = (EditText) findViewById(R.id.reg_password);
         btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnLinkToLogin = (Button) findViewById(R.id.btnSignUpReg);
+
+
         // Progress dialog
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
@@ -56,25 +71,39 @@ public class RegisterActivity extends AppCompatActivity {
             finish();
         }
 
+        btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
+
         // Register Button Click event
         btnRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String name = inputFirstName.getText().toString().trim();
-                String surname = inputSecondName.getText().toString().trim();
-                String email = inputEmail.getText().toString().trim();
-                String login = inputLogin.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                if (validate()){
+                    String name = inputFirstName.getText().toString().trim();
+                    String surname = inputSecondName.getText().toString().trim();
+                    String email = inputEmail.getText().toString().trim();
+                    String login = inputLogin.getText().toString().trim();
+                    String password = inputPassword.getText().toString().trim();
 
-                if (!name.isEmpty() && !surname.isEmpty() && !email.isEmpty() &&
-                        !login.isEmpty() && !password.isEmpty()) {
-                    registerUser(name, surname, email, login, password);
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Пожалуйста, введите данные о себе!", Toast.LENGTH_LONG)
-                            .show();
+                    if (!name.isEmpty() && !surname.isEmpty() && !email.isEmpty() &&
+                            !login.isEmpty() && !password.isEmpty()) {
+                        registerUser(name, surname, email, login, password);
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                "Пожалуйста, введите данные о себе!", Toast.LENGTH_LONG)
+                                .show();
+                    }
                 }
             }
         });
+    }
+
+    private boolean validate() {
+        final boolean isValid = FormValidator.validate(this, new SimpleErrorPopupCallback(this, true));
+        return isValid;
     }
 
     private void registerUser(final String name, final String surname,
@@ -108,4 +137,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+
 }
+
