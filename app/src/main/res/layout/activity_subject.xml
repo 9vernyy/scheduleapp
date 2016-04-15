@@ -19,7 +19,7 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:padding="16dp"
-        android:text="No subjects"
+        android:text="Вы не добавили расписание, для добавления нажмите +"
         android:visibility="gone" />
 
     <View

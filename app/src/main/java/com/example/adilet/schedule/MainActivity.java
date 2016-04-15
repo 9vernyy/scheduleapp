@@ -8,8 +8,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity
 
     MaterialCalendarView widget;
     private SQLiteHandler sqLiteHandler;
+    private TextView fullName;
+    private TextView email;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +54,20 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         sqLiteHandler = new SQLiteHandler(getApplicationContext());
+        initProfile();
+    }
 
+    private void initProfile() {
+        View header = navigationView.getHeaderView(0);
+        fullName = (TextView) header.findViewById(R.id.fullName);
+        email = (TextView) header.findViewById(R.id.email);
+        Log.d("FULLNAME", getIntent().getStringExtra("fullname"));
+        fullName.setText(getIntent().getStringExtra("fullname"));
+        email.setText(getIntent().getStringExtra("email"));
     }
 
     @Override

@@ -62,8 +62,7 @@ public class SubjectAddActivity extends AppCompatActivity {
 
             case R.id.save_reminder:
                 if (subjectName.getText().toString().length() == 0)
-                    subjectName.setError("Название предмета не может быть пустым!");
-
+                    Toast.makeText(this, "Название предмета не может быть пустым!", Toast.LENGTH_SHORT).show();
                 else {
                     saveSubject();
                 }

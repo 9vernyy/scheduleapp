@@ -102,16 +102,15 @@ public class LoginActivity extends AppCompatActivity {
         showDialog();
         HashMap<String, String> user = db.getUserDetails();
 
-
         try {
             if(user !=null) {
                 if (login.equals(user.get("login")) && password.equals(user.get("password"))) {
                     Toast.makeText(getApplicationContext(), "Успешно!", Toast.LENGTH_LONG).show();
                     ses.setLogin(true);
                     hideDialog();
-                    Intent intent = new Intent(
-                            LoginActivity.this,
-                            MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    intent.putExtra("fullname", user.get("name")+ " " + user.get("surname"));
+                    intent.putExtra("email", user.get("email"));
                     startActivity(intent);
                     finish();
                 } else {
