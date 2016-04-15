@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private SQLiteHandler db;
     private String login;
     private String password;
+    private HashMap<String, String> user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,16 @@ public class LoginActivity extends AppCompatActivity {
         // Session manager
         session = new SessionManager(getApplicationContext());
 
+        user = db.getUserDetails();
+        Log.d("USER", user.toString());
+
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("fullname", user.get("name") + " " + user.get("surname"));
+            intent.putExtra("email", user.get("email"));
+            intent.putExtra("userId", user.get("id"));
             startActivity(intent);
             finish();
         }
@@ -61,9 +69,9 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                if(validate()) {
-                String login = inputLogin.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                if (validate()) {
+                    String login = inputLogin.getText().toString().trim();
+                    String password = inputPassword.getText().toString().trim();
                     // Check for empty data in the form
                     if (!login.isEmpty() && !password.isEmpty()) {
                         // login user
@@ -89,10 +97,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
     private boolean validate() {
         final boolean isValid = FormValidator.validate(this, new SimpleErrorPopupCallback(this, true));
         return isValid;
     }
+
     /**
      * function to verify login details in mysql db
      */
@@ -100,25 +110,25 @@ public class LoginActivity extends AppCompatActivity {
         SessionManager ses = new SessionManager(getApplicationContext());
         pDialog.setMessage("Вход в учетную запись ...");
         showDialog();
-        HashMap<String, String> user = db.getUserDetails();
 
         try {
-            if(user !=null) {
+            if (user != null) {
                 if (login.equals(user.get("login")) && password.equals(user.get("password"))) {
                     Toast.makeText(getApplicationContext(), "Успешно!", Toast.LENGTH_LONG).show();
                     ses.setLogin(true);
                     hideDialog();
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    intent.putExtra("fullname", user.get("name")+ " " + user.get("surname"));
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("fullname", user.get("name") + " " + user.get("surname"));
                     intent.putExtra("email", user.get("email"));
+                    intent.putExtra("userId", user.get("id"));
                     startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Неверный логин или пароль!", Toast.LENGTH_SHORT).show();
                     hideDialog();
                 }
-            }
-            else Toast.makeText(getApplicationContext(), "Такой пользователь не зарегистрирован!", Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(getApplicationContext(), "Такой пользователь не зарегистрирован!", Toast.LENGTH_SHORT).show();
         } catch (SQLiteException e) {
             e.printStackTrace();
         }

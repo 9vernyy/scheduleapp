@@ -36,6 +36,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_LOGIN = "login";
     private static final String KEY_PASSWORD = "password";
+    private static final String KEY_IMAGE = "image";
+
 
     private static final String KEY_SCHEDULE_ID = "id";
     private static final String KEY_USER_ID = "user_id";
@@ -54,7 +56,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         createTableUser(db);
         createTableSchedule(db);
-
     }
 
     private void createTableSchedule(SQLiteDatabase db) {
@@ -70,11 +71,34 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private void createTableUser(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_SURNAME + " TEXT," + KEY_EMAIL + " TEXT UNIQUE,"
+                + KEY_SURNAME + " TEXT," + KEY_EMAIL + " TEXT UNIQUE," + KEY_IMAGE + " BLOB,"
                 + KEY_LOGIN + " TEXT UNIQUE," + KEY_PASSWORD + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
         Log.d(TAG, "База данных пользователей успешно создана");
+    }
+
+    public int setImage(int userId, byte[] image) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues cv = new  ContentValues();
+        cv.put(KEY_IMAGE, image);
+        return  sqLiteDatabase.update(TABLE_USER, cv, KEY_USER_ID + "=?", new String[]{String.valueOf(userId)});
+    }
+
+    public byte[] getImage(int userId) {
+        byte[] byteImage = null;
+        String selectQuery = "SELECT image FROM " + TABLE_USER + " WHERE id=?" + userId;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+             byteImage = cursor.getBlob(0);
+        }
+        cursor.close();
+        db.close();
+        return byteImage;
     }
 
     // Upgrading database
@@ -140,8 +164,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             user.put("name", cursor.getString(1));
             user.put("surname", cursor.getString(2));
             user.put("email", cursor.getString(3));
-            user.put("login", cursor.getString(4));
-            user.put("password", cursor.getString(5));
+            user.put("login", cursor.getString(5));
+            user.put("password", cursor.getString(6));
         }
         cursor.close();
         db.close();
