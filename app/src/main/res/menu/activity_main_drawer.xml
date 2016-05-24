@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/groups"
+        android:icon="@drawable/groups"
+        android:title="Список групп" />
+
+    <item
+        android:id="@+id/edugov"
+        android:icon="@drawable/edu"
+        android:title="Министерство образования" />
+
+    <group
+        android:id="@+id/nav_footer"
+        android:orderInCategory="100">
+
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/about"
+            android:title="О нас" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/cabinet"
+            android:title="Выход" />
+    </group>
+</menu>
